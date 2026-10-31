@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 
@@ -62,12 +62,21 @@ const products = [
   },
 ];
 
+const filters = [
+  "All",
+  "Brown Granite",
+  "Black Granite",
+  "Light Granite",
+];
+
 function Reveal({
   children,
   className = "",
+  delay = 0,
 }: {
   children: React.ReactNode;
   className?: string;
+  delay?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -107,6 +116,7 @@ function Reveal({
   return (
     <div
       ref={ref}
+      style={{ transitionDelay: `${delay}ms` }}
       className={`translate-y-8 opacity-0 transition-all duration-700 ease-out motion-reduce:translate-y-0 motion-reduce:opacity-100 ${className}`}
     >
       {children}
@@ -115,6 +125,15 @@ function Reveal({
 }
 
 export default function ProductsPage() {
+  const [activeFilter, setActiveFilter] = useState("All");
+
+  const visibleProducts =
+    activeFilter === "All"
+      ? products
+      : products.filter(
+          (product) => product.category === activeFilter
+        );
+
   return (
     <main className="overflow-hidden bg-[#151310] text-[#f7f3ec]">
       <Navbar />
@@ -151,7 +170,7 @@ export default function ProductsPage() {
 
           <a
             href="#granite-collection"
-            className="mt-8 inline-flex min-h-13 items-center gap-7 bg-[#c9a66b] px-6 py-4 text-xs font-bold text-[#17130e] transition duration-300 hover:-translate-y-1 hover:bg-[#e0c18b]"
+            className="mt-8 inline-flex min-h-13 items-center gap-7 rounded-lg bg-[#c9a66b] px-6 py-4 text-xs font-bold text-[#17130e] transition-all duration-700 ease-in-out hover:-translate-y-2 hover:bg-[#e0c18b] hover:shadow-[0_14px_30px_rgba(201,166,107,0.25)]"
           >
             Explore Collection <span className="text-lg">↗</span>
           </a>
@@ -164,6 +183,7 @@ export default function ProductsPage() {
           <p className="text-[10px] font-semibold tracking-[0.25em] text-[#c9a66b]">
             OUR PRODUCTS
           </p>
+
           <h2 className="mt-4 text-3xl font-medium leading-tight sm:text-4xl">
             Find the right stone
             <br />
@@ -173,7 +193,7 @@ export default function ProductsPage() {
           </h2>
         </Reveal>
 
-        <Reveal>
+        <Reveal delay={150}>
           <p className="max-w-xl text-sm leading-8 text-[#aaa49b] md:justify-self-end">
             Browse our sample collection and contact us for
             available varieties, slab dimensions, finishes,
@@ -182,26 +202,66 @@ export default function ProductsPage() {
         </Reveal>
       </section>
 
-      {/* PRODUCT GRID */}
+      {/* COLLECTION HEADING AND FILTERS */}
       <section
         id="granite-collection"
-        className="px-6 py-16 sm:px-10 sm:py-20 lg:px-[9%] lg:py-28"
+        className="px-6 pb-8 pt-16 sm:px-10 lg:px-[9%] lg:pt-24"
       >
+        <div className="mx-auto max-w-7xl">
+          <Reveal>
+            <div className="flex flex-col justify-between gap-6 border-b border-white/15 pb-8 md:flex-row md:items-end">
+              <div>
+                <p className="text-[10px] font-semibold tracking-[0.3em] text-[#c9a66b]">
+                  02 / CURATED COLLECTIONS
+                </p>
+
+                <h2 className="mt-4 text-3xl font-medium sm:text-5xl">
+                  The stone journal
+                </h2>
+              </div>
+
+              <p className="text-xs tracking-wide text-[#aaa49b]">
+                {visibleProducts.length.toString().padStart(2, "0")} /
+                {" "}PRODUCT COLLECTIONS
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={120}>
+            <div className="mt-8 flex gap-3 overflow-x-auto pb-3">
+              {filters.map((filter) => (
+                <button
+                  key={filter}
+                  type="button"
+                  onClick={() => setActiveFilter(filter)}
+                  aria-pressed={activeFilter === filter}
+                  className={`shrink-0 rounded-full border px-6 py-3 text-[10px] font-semibold tracking-wide transition-all duration-500 sm:text-xs ${activeFilter === filter ? "border-[#c9a66b] bg-[#c9a66b] text-[#151310]" : "border-white/15 bg-transparent text-[#c7c0b5] hover:border-[#c9a66b] hover:text-[#c9a66b]"}`}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* PRODUCT GRID */}
+      <section className="px-6 pb-16 sm:px-10 sm:pb-20 lg:px-[9%] lg:pb-28">
         <div className="mx-auto grid max-w-7xl gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16">
-          {products.map((product) => (
-            <Reveal key={product.number}>
-              <article className="group h-full">
+          {visibleProducts.map((product, index) => (
+            <Reveal key={product.number} delay={index * 120}>
+              <article className="group relative z-0 h-full rounded-sm transition-all duration-700 ease-in-out hover:z-10 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_22px_45px_rgba(0,0,0,0.35)] hover:ring-1 hover:ring-[#c9a66b]/60">
                 <a
                   href={`/contact?product=${encodeURIComponent(product.name)}`}
                   aria-label={`Enquire about ${product.name}`}
-                  className="relative block overflow-hidden bg-[#252019]"
+                  className="relative block overflow-hidden rounded-t-sm bg-[#252019]"
                 >
                   <div className="overflow-hidden">
                     <img
                       src={product.image}
                       alt={`${product.name} collection preview`}
                       loading="lazy"
-                      className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                     />
                   </div>
 
@@ -209,7 +269,7 @@ export default function ProductsPage() {
                     {product.category.toUpperCase()}
                   </span>
 
-                  <span className="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center border border-white/50 bg-[#151310]/70 text-xl text-white transition-all duration-300 group-hover:border-[#c9a66b] group-hover:bg-[#c9a66b] group-hover:text-[#151310]">
+                  <span className="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center border border-white/50 bg-[#151310]/70 text-xl text-white transition-all duration-500 group-hover:-translate-y-1 group-hover:border-[#c9a66b] group-hover:bg-[#c9a66b] group-hover:text-[#151310]">
                     ↗
                   </span>
                 </a>
@@ -220,7 +280,7 @@ export default function ProductsPage() {
                       COLLECTION / {product.number}
                     </p>
 
-                    <h3 className="text-xl font-medium transition-colors duration-300 group-hover:text-[#c9a66b]">
+                    <h3 className="text-xl font-medium transition-colors duration-500 group-hover:text-[#c9a66b]">
                       {product.name}
                     </h3>
                   </div>
@@ -235,7 +295,7 @@ export default function ProductsPage() {
                   className="mt-5 inline-flex items-center gap-3 text-[10px] font-bold tracking-[0.15em] text-[#c9a66b]"
                 >
                   ENQUIRE ABOUT THIS STONE
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">
+                  <span className="transition-transform duration-500 group-hover:translate-x-2">
                     →
                   </span>
                 </a>
@@ -243,6 +303,12 @@ export default function ProductsPage() {
             </Reveal>
           ))}
         </div>
+
+        {visibleProducts.length === 0 && (
+          <p className="py-16 text-center text-sm text-[#aaa49b]">
+            No products found in this collection.
+          </p>
+        )}
       </section>
 
       {/* ENQUIRY BANNER */}
@@ -268,9 +334,12 @@ export default function ProductsPage() {
 
           <a
             href="/contact"
-            className="inline-flex shrink-0 items-center justify-center gap-6 bg-[#211d17] px-6 py-4 text-xs font-bold text-white transition duration-300 hover:-translate-y-1 hover:bg-[#9b7944]"
+            className="group inline-flex shrink-0 items-center justify-center gap-6 rounded-lg bg-[#c9a66b] px-6 py-4 text-xs font-bold text-[#17130e] transition-all duration-700 ease-in-out hover:-translate-y-2 hover:scale-[1.03] hover:bg-[#e0c18b] hover:shadow-[0_14px_30px_rgba(150,116,72,0.25)]"
           >
-            Send an Enquiry <span className="text-lg">↗</span>
+            Send an Enquiry
+            <span className="text-lg transition-transform duration-500 group-hover:translate-x-2">
+              ↗
+            </span>
           </a>
         </Reveal>
       </section>
