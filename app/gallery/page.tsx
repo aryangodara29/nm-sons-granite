@@ -211,7 +211,7 @@ export default function GalleryPage() {
       <Navbar />
 
       {/* CINEMATIC HERO */}
-      <section className="relative isolate flex min-h-[650px] items-center overflow-hidden bg-[#211c16] px-6 py-24 sm:px-10 lg:min-h-[760px] lg:px-[9%]">
+      {/* <section className="relative isolate flex min-h-[650px] items-center overflow-hidden bg-[#211c16] px-6 py-24 sm:px-10 lg:min-h-[760px] lg:px-[9%]">
         <img
           src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=90"
           alt="Architectural interior featuring natural stone finishes"
@@ -257,7 +257,7 @@ export default function GalleryPage() {
           <span className="h-px w-12 bg-[#c9a66b]" />
           NATURAL MATERIALS / TIMELESS DESIGN
         </div>
-      </section>
+      </section> */}
 
       {/* INTRODUCTION */}
       <section className="border-b border-white/10 px-6 py-20 sm:px-10 lg:px-[9%] lg:py-24">

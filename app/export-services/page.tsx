@@ -104,7 +104,7 @@ export default function ExportServicesPage() {
       <Navbar />
 
       {/* HERO */}
-      <section className="relative isolate flex min-h-[520px] items-center bg-[#211c16] px-6 py-24 sm:px-10 lg:min-h-[650px] lg:px-[9%]">
+      {/* <section className="relative isolate flex min-h-[520px] items-center bg-[#211c16] px-6 py-24 sm:px-10 lg:min-h-[650px] lg:px-[9%]">
         <img
           src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=85"
           alt="Contemporary architectural interior with stone-inspired finishes"
@@ -142,7 +142,7 @@ export default function ExportServicesPage() {
             <span className="text-lg">↗</span>
           </a>
         </Reveal>
-      </section>
+      </section> */}
 
       {/* INTRODUCTION */}
       <section className="grid gap-7 border-b border-white/10 px-6 py-16 sm:px-10 md:grid-cols-2 md:items-end lg:px-[9%] lg:py-24">

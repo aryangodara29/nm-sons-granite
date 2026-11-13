@@ -139,7 +139,7 @@ export default function ProductsPage() {
       <Navbar />
 
       {/* HERO */}
-      <section className="relative isolate flex min-h-[480px] items-center bg-[#211c16] px-6 py-24 sm:px-10 lg:min-h-[560px] lg:px-[9%]">
+      {/* <section className="relative isolate flex min-h-[480px] items-center bg-[#211c16] px-6 py-24 sm:px-10 lg:min-h-[560px] lg:px-[9%]">
         <img
           src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=85"
           alt="Contemporary architectural interior with stone-inspired finishes"
@@ -175,7 +175,7 @@ export default function ProductsPage() {
             Explore Collection <span className="text-lg">↗</span>
           </a>
         </Reveal>
-      </section>
+      </section> */}
 
       {/* INTRODUCTION */}
       <section className="grid gap-5 border-b border-white/10 px-6 py-12 sm:px-10 md:grid-cols-2 md:items-end lg:px-[9%]">
