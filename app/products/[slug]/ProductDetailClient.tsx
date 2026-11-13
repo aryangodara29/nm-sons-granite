@@ -112,22 +112,24 @@ export default function ProductDetailClient({
             </p>
           </div>
 
-          {/* ENQUIRY BUTTONS */}
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link
-              href={`/contact?product=${encodeURIComponent(product.name)}`}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#211c16] px-6 py-3.5 text-xs font-semibold text-white transition-all duration-500 hover:-translate-y-1 hover:bg-[#3a3025]"
-            >
-              Contact Our Team ↗
-            </Link>
+          
+{/* ENQUIRY BUTTONS */}
+<div className="mt-6 flex flex-wrap gap-3">
+  <Link
+    href={`/contact?product=${encodeURIComponent(product.name)}`}
+    className="inline-flex items-center justify-center gap-2 rounded-full border border-[#c9a66b] bg-[#c9a66b] px-6 py-3.5 text-xs font-semibold !text-[#211c16] transition-all duration-500 hover:-translate-y-1 hover:bg-[#b99355]"
+  >
+    Contact Our Team <span>↗</span>
+  </Link>
 
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-full border border-[#c9a66b] px-6 py-3.5 text-xs font-semibold text-[#211c16] transition-all duration-500 hover:-translate-y-1 hover:bg-[#c9a66b]/15"
-            >
-              Send an Enquiry
-            </Link>
-          </div>
+  <Link
+    href="/contact"
+    className="inline-flex items-center justify-center rounded-full border border-[#c9a66b] bg-transparent px-6 py-3.5 text-xs font-semibold text-[#211c16] transition-all duration-500 hover:-translate-y-1 hover:bg-[#c9a66b]/15"
+  >
+    Send an Enquiry
+  </Link>
+</div>
+
 
           <p className="mt-4 text-[10px] leading-5 text-[#82796d]">
             Contact us for product details, bulk enquiries and export

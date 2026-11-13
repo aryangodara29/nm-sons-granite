@@ -2,11 +2,13 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import ProductCard from "../products/ProductCard";
 
 const products = [
   {
     name: "GD Brown Granite",
+    slug: "gd-brown-granite",
     category: "NATURAL GRANITE",
     image:
       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=85",
@@ -14,7 +16,8 @@ const products = [
       "Rich brown tones with a distinctive natural character.",
   },
   {
-    name: "Black Granite",
+    name: "Black Galaxy Granite",
+    slug: "black-galaxy-granite",
     category: "DARK STONE COLLECTION",
     image:
       "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=85",
@@ -22,12 +25,13 @@ const products = [
       "A bold, timeless look for contemporary spaces.",
   },
   {
-    name: "Gold Stone Collection",
+    name: "Kashmiri Gold Granite",
+    slug: "kashmiri-gold-granite",
     category: "PREMIUM SELECTION",
     image:
       "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85",
     description:
-      "Elegant stone-inspired finishes for refined interiors.",
+      "Warm golden tones for distinctive architectural spaces.",
   },
 ];
 
@@ -120,25 +124,50 @@ export default function ProductsSection() {
           </p>
         </div>
 
+        {/* FEATURED PRODUCTS */}
         <div className="product-grid">
           {products.map((product, index) => (
-            <div
-              key={product.name}
+            <Link
+              key={product.slug}
+              href={`/products/${product.slug}`}
+              aria-label={`View ${product.name} details`}
               data-reveal
               style={{
                 transitionDelay: `${index * 150}ms`,
               }}
-              className="group relative z-0 rounded-sm transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:z-10 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_22px_45px_rgba(0,0,0,0.18)] hover:ring-1 hover:ring-[#c9a66b]/60"
+              className="group relative z-0 block rounded-sm transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:z-10 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_22px_45px_rgba(0,0,0,0.18)] hover:ring-1 hover:ring-[#c9a66b]/60"
             >
-              <ProductCard {...product} />
-            </div>
+              <ProductCard
+                name={product.name}
+                category={product.category}
+                image={product.image}
+                description={product.description}
+              />
+            </Link>
           ))}
         </div>
 
+        {/* IMAGE DISCLAIMER */}
         <p className="image-disclaimer" data-reveal>
           Featured imagery is illustrative. Actual stone appearance
           and availability must be confirmed with our team.
         </p>
+
+        {/* ALL PRODUCTS BUTTON */}
+        <div
+          data-reveal
+          className="mt-10 flex justify-center"
+        >
+          <Link
+            href="/products"
+            className="group inline-flex items-center justify-center gap-5 rounded-full border border-[#c9a66b] bg-[#c9a66b] px-9 py-4 text-xs font-semibold tracking-[0.12em] text-[#211c16] transition-all duration-700 hover:-translate-y-1 hover:bg-transparent hover:text-[#c9a66b]"
+          >
+            ALL PRODUCTS
+            <span className="text-base transition-transform duration-500 group-hover:translate-x-2">
+              →
+            </span>
+          </Link>
+        </div>
       </div>
     </section>
   );

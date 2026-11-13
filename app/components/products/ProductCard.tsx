@@ -14,24 +14,24 @@ export default function ProductCard({
 }: ProductCardProps) {
   return (
     <article className="product-card">
-      <a
+      <div
         className="product-image"
-        href="#contact"
         style={{ backgroundImage: `url("${image}")` }}
-        aria-label={`Enquire about ${name}`}
+        aria-label={`${name} granite image`}
+        role="img"
       >
         <span className="product-index">{category}</span>
         <span className="product-arrow">↗</span>
-      </a>
+      </div>
 
       <div className="product-info">
         <span className="product-category">{category}</span>
         <h3>{name}</h3>
         <p>{description}</p>
 
-        <a className="text-link" href="#contact">
-          Enquire about this stone <span>↗</span>
-        </a>
+        <span className="text-link">
+          View Product Details <span>↗</span>
+        </span>
       </div>
     </article>
   );
