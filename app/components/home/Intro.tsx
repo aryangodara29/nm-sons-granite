@@ -99,7 +99,7 @@ export default function Intro() {
 
         <a
           className="text-link transition-all duration-300 hover:translate-x-2"
-          href="#contact"
+          href="/about"
         >
           Get to know us <span>↗</span>
         </a>

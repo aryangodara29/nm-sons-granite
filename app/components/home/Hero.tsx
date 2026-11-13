@@ -96,7 +96,7 @@ export default function Hero() {
             }`}
           >
             <a
-              href="#products"
+              href="/products"
               className="group inline-flex min-h-12 items-center justify-center gap-5 border border-[#c9a66b] bg-[#c9a66b] px-6 py-3 text-xs font-bold text-[#201910] shadow-lg shadow-black/10 transition-all duration-300 hover:-translate-y-1 hover:border-[#e4c994] hover:bg-[#e4c994] hover:shadow-xl hover:shadow-[#c9a66b]/20 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c9a66b] motion-reduce:transform-none"
             >
               Explore Collection
@@ -107,7 +107,7 @@ export default function Hero() {
             </a>
 
             <a
-              href="#contact"
+              href="/contact"
               className="inline-flex min-h-12 items-center justify-center border border-white/55 bg-white/[0.03] px-6 py-3 text-xs font-medium text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#c9a66b] hover:bg-[#c9a66b]/15 hover:text-[#e5c995] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c9a66b] motion-reduce:transform-none"
             >
               Discuss Your Requirements
