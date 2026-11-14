@@ -2,6 +2,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 
 export default function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -87,12 +88,16 @@ export default function ContactSection() {
           Our team can discuss the next steps with you.
         </p>
 
-        <a
-className="button-gold inline-block rounded-lg transition-all duration-700 ease-in-out hover:-translate-y-2 hover:scale-105 hover:shadow-[0_14px_30px_rgba(201,166,107,0.3)]"          href="mailto:info@nmsonsexim.com?subject=Granite%20Product%20Enquiry"
+        <Link
+          className="button-gold inline-block rounded-lg transition-all duration-700 ease-in-out hover:-translate-y-2 hover:scale-105 hover:shadow-[0_14px_30px_rgba(201,166,107,0.3)]"
+          href="/contact"
           data-reveal
         >
-          Send an Enquiry <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">↗</span>
-        </a>
+          Send an Enquiry{" "}
+          <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+            ↗
+          </span>
+        </Link>
       </div>
     </section>
   );
